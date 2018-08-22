@@ -56,11 +56,34 @@ function tabuleiro:createTabuleiroIfNill(tabuleiro)
 end
 
 
-tabuleiro:createTabuleiro()
-print(tabuleiro:viewTabuleiro(tabuleiro))
+--tabuleiro:createTabuleiro()
+--print(tabuleiro:viewTabuleiro(tabuleiro))
 --tabuleiro:createTabuleiroIfNill()
 --print(tabuleiro:viewTabuleiro(tabuleiro))
 
+local navioTamanhoDois = {
+	tamanho = {},
+	posicao = {"vertical" , "horizontal"}
+}
+
+function navioTamanhoDois:createNavio()
+
+	if navioTamanhoDois.posicao[2] == "horizontal" then
+		navioTamanhoDois.tamanho = {2, 2}
+	end
+	return navioTamanhoDois
+end
+navioTamanhoDois:createNavio()
+
+function mostrarNavio(navio)
+	local strNavio = ""
+
+	for i=1, #navio.tamanho do
+		strNavio = strNavio .. navio.tamanho[i] .. " "
+	end
+	return strNavio
+end
 
 
+print(mostrarNavio(navioTamanhoDois))
 
