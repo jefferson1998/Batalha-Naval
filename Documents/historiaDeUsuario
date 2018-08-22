@@ -1,0 +1,18 @@
+                                          História de Usuário
+
+1. eu como usuário poderei rotacionar os diferentes navios no tabuleiro;
+
+	a) eu como usuário terei 5 barcos de diferentes tipos;
+	b) eu como usuário poderiei colocar os navios na vertical ou horizontal;
+	c) eu como usuário não poderei ter navios com mais de cinco posições;
+	d) eu como usuário terei um tabuleiro 10x10.
+
+2. eu como usuário verei o tabuleiro inimigo;
+
+	a) eu como usuário vou poder atirar bombas no inimigo;
+	b) eu como usuário vou poder atirar mais bombas caso acerte alguma parte do barco inimigo.
+
+3. eu como usuário devo pontuar caso acerte um navio inimigo;
+
+	a) a pontuação deverá ser atribuída quando o banco for destruído por completo;
+

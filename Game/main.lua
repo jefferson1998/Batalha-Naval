@@ -18,23 +18,31 @@ function tabuleiro:createTabuleiro()
 			tabuleiro[i][j] = 0
 		end
 	end
-	return tabuleiro
+
 end
 
 function tabuleiro:viewTabuleiro(tabuleiro)
-	local srt = ""
+	local strTabuleiro = ""
 	for i=1, #tabuleiro do
 		for j=1, #tabuleiro[i] do
 	
-			srt = srt .. tabuleiro[i][j]
+		strTabuleiro = strTabuleiro .. tabuleiro[i][j]
+
 		
 		end
-			srt = srt .. "\n"
+			strTabuleiro = strTabuleiro .. "\n"
 	end
 
-	return str
+	return strTabuleiro
 
 end 
+
+function tabuleiro:verificaTabuleiro()
+	
+
+end
+
+print(tabuleiro)
 
 function tabuleiro:createTabuleiroIfNill(tabuleiro)
 	for i=1,#tabuleiro do
@@ -45,10 +53,13 @@ function tabuleiro:createTabuleiroIfNill(tabuleiro)
 			end	
 		end
 	end
-	
 end
 
 
+tabuleiro:createTabuleiro()
+print(tabuleiro:viewTabuleiro(tabuleiro))
+--tabuleiro:createTabuleiroIfNill()
+--print(tabuleiro:viewTabuleiro(tabuleiro))
 
 
 
