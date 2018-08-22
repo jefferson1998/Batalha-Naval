@@ -8,6 +8,11 @@ function navioTamanhoUm:createNavio()
 
 end
 
+local navioTamanhoDois = {
+	tamanho = {},
+	posicao = {"vertical" , "horizontal"}
+}
+
 function navioTamanhoDois:createNavio()
 
 	if navioTamanhoDois.posicao[2] == "horizontal" then
