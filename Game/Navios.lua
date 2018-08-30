@@ -1,12 +1,4 @@
-local navioTamanhoUm = {
-	tamanho = {}
-}
 
-function navioTamanhoUm:createNavio()
-
-	return navioTamanhoUm.tamanho = {1}
-
-end
 
 local navioTamanhoDois = {
 	tamanho = {},
@@ -15,20 +7,27 @@ local navioTamanhoDois = {
 
 function navioTamanhoDois:createNavio()
 
-	if navioTamanhoDois.posicao[2] == "horizontal" then
-		navioTamanhoDois.tamanho = {2, 2}
+	if navioTamanhoDois.posicao[1] == "vertical" then
+		navioTamanhoDois.tamanho = {{2}, {2}}
+
 	end
 	return navioTamanhoDois
 end
+
+navioTamanhoDois:createNavio()
 
 function mostrarNavio(navio)
 	local strNavio = ""
 
 	for i=1, #navio.tamanho do
-		strNavio = strNavio .. navio.tamanho[i] .. " "
+		for j=1,#navio.tamanho[i] do
+			strNavio = strNavio .. navio.tamanho[i][j] .. "\n"
+		end
 	end
 	return strNavio
 end
+
+print(mostrarNavio(navioTamanhoDois))
 
 local navioTamanhoTres = {
 	tamanho = {},
