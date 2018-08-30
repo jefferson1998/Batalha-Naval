@@ -1,3 +1,4 @@
+ ----- Tabuleiros ------
 local tabuleiro = {
 	{},
 	{},
@@ -23,6 +24,8 @@ local tabuleiro1 = {
 	{},
 	{},
 }
+
+------- Mapa de visão do inimigo -------
 
 local mapaJogador1 = {
 	{"?","?","?","?","?","?","?","?","?","?",},
@@ -50,6 +53,7 @@ local mapaJogador2 = {
 	{"?","?","?","?","?","?","?","?","?","?"},
 } 
 
+----- Funções -----------
 function preencherTabuleiro(tabuleiro)
 
 	for i=1,10 do
@@ -74,15 +78,6 @@ function viewTabuleiro(tabuleiro)
 	return strTabuleiro
 
 end 
-
-
-local navios = {
-	Corveta = {tamanho = 2, orientacao = "vertical"},
-	Fragata = {tamanho = 3, orientacao = "vertical"},
-	PortaAvioes = {tamanho = 4, orientacao = "vertical"},
-	Cruzador = {tamanho = 5, orientacao = "vertical"}
-}
-
 
 function inserirNavio(navio, linha, coluna, tabuleiro)
 local posicaoOk = true
@@ -118,6 +113,17 @@ local posicaoOk = true
 	end
 	
 end
+
+---------------- Navios ----------------
+
+local navios = {
+	Corveta = {tamanho = 2, orientacao = "vertical"},
+	Fragata = {tamanho = 3, orientacao = "vertical"},
+	PortaAvioes = {tamanho = 4, orientacao = "vertical"},
+	Cruzador = {tamanho = 5, orientacao = "vertical"}
+}
+
+-----------------  Jogadores ----------------
 
 local jogador1 = {
 	nome = "Player 1",
@@ -165,46 +171,25 @@ print("vertical || horizontal")
 io.read()
 orientacao = io.read()
 
-print(orientacao)
-	if opcao == 2 then
-		jogador1.totalNavios.Corveta.orientacao = orientacao
-		if inserirNavio(jogador1.totalNavios.Corveta, x, y, jogador1.tabuleiro) == false then
-			print("Posição já alocada!")
-		else 
-			naviosRestantes = naviosRestantes -1
-		end
-		
-	elseif opcao == 3 then
-		jogador1.totalNavios.Fragata.orientacao = orientacao
-		if inserirNavio(jogador1.totalNavios.Fragata, x, y, jogador1.tabuleiro) == false then
-			print("Posição já alocada!")
-		else 
-			naviosRestantes = naviosRestantes -1
-		end
-		
-	elseif opcao == 4 then
-		jogador1.totalNavios.PortaAvioes.orientacao = orientacao
-		if inserirNavio(jogador1.totalNavios.PortaAvioes, x, y, jogador1.tabuleiro) == false then
-			print("Posição já alocada!")
-		else 
-			naviosRestantes = naviosRestantes -1
-		end
-		
-	elseif opcao == 5 then
-		jogador1.totalNavios.Cruzador.orientacao = orientacao
-		if inserirNavio(jogador1.totalNavios.Cruzador, x, y, jogador1.tabuleiro) == false then
-			print("Posição já alocada!")
-		else 
-			naviosRestantes = naviosRestantes -1
-		end
-		
-	else
-		print("Navio inexistente!")
-	end
 
-	if naviosRestantes == 0 then
-		print("Navios Inseridos!")
+for k,v in pairs(jogador1.totalNavios) do
+	if opcao == v.tamanho then
+		opcao = v
+
+		opcao. orientacao = orientacao
+
+		if inserirNavio(opcao, x, y, jogador1.tabuleiro) == false then
+			print("Posição não disponível!")
+		else
+			naviosRestantes = naviosRestantes - 1
+		end
 	end
+end
+
+
+if naviosRestantes == 0 then
+	print("Navios Inseridos!")
+end
 
 
 print(viewTabuleiro(jogador1.tabuleiro))
@@ -235,46 +220,25 @@ print("vertical || horizontal")
 io.read()
 orientacao = io.read()
 
-print(orientacao)
-	if opcao == 2 then
-		jogador2.totalNavios.Corveta.orientacao = orientacao
-		if inserirNavio(jogador2.totalNavios.Corveta, x, y, jogador2.tabuleiro) == false then
-			print("Posição já alocada!")
-		else 
-			naviosRestantes = naviosRestantes -1
-		end
-		
-	elseif opcao == 3 then
-		jogador2.totalNavios.Fragata.orientacao = orientacao
-		if inserirNavio(jogador2.totalNavios.Fragata, x, y, jogador2.tabuleiro) == false then
-			print("Posição já alocada!")
-		else 
-			naviosRestantes = naviosRestantes -1
-		end
-		
-	elseif opcao == 4 then
-		jogador2.totalNavios.PortaAvioes.orientacao = orientacao
-		if inserirNavio(jogador2.totalNavios.PortaAvioes, x, y, jogador2.tabuleiro) == false then
-			print("Posição já alocada!")
-		else 
-			naviosRestantes = naviosRestantes -1
-		end
-		
-	elseif opcao == 5 then
-		jogador2.totalNavios.Cruzador.orientacao = orientacao
-		if inserirNavio(jogador2.totalNavios.Cruzador, x, y, jogador2.tabuleiro) == false then
-			print("Posição já alocada!")
-		else 
-			naviosRestantes = naviosRestantes -1
-		end
-		
-	else
-		print("Navio inexistente!")
-	end
 
-	if naviosRestantes == 0 then
-		print("Navios Inseridos!")
+	
+for k,v in pairs(jogador1.totalNavios) do
+	if opcao == v.tamanho then
+		opcao = v
+
+		opcao. orientacao = orientacao
+
+		if inserirNavio(opcao, x, y, jogador1.tabuleiro) == false then
+			print("Posição não disponível!")
+		else
+			naviosRestantes = naviosRestantes - 1
+		end
 	end
+end
+
+if naviosRestantes == 0 then
+	print("Navios Inseridos!")
+end
 
 
 print(viewTabuleiro(jogador2.tabuleiro))
