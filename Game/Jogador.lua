@@ -171,7 +171,6 @@ print("vertical || horizontal")
 io.read()
 orientacao = io.read()
 
-
 for k,v in pairs(jogador1.totalNavios) do
 	if opcao == v.tamanho then
 		opcao = v
@@ -186,24 +185,19 @@ for k,v in pairs(jogador1.totalNavios) do
 	end
 end
 
+print(viewTabuleiro(jogador1.tabuleiro))
 
 if naviosRestantes == 0 then
 	print("Navios Inseridos!")
 end
 
-
-print(viewTabuleiro(jogador1.tabuleiro))
-
 until (opcao == 0 or naviosRestantes == 0)
 
-
 ----- Navios do Jogador 2 ----
-
 
 print("--------- Player 2  inserir Navios ----- \n\n")
 naviosRestantes = 4
 repeat
-
 
 print("Digite o tamanho do navio 2, 3, 4, 5 ou 0 para sair")
 opcao = io.read("*n")
@@ -219,16 +213,14 @@ y = io.read("*n")
 print("vertical || horizontal")
 io.read()
 orientacao = io.read()
-
-
 	
-for k,v in pairs(jogador1.totalNavios) do
+for k,v in pairs(jogador2.totalNavios) do
 	if opcao == v.tamanho then
 		opcao = v
 
 		opcao. orientacao = orientacao
 
-		if inserirNavio(opcao, x, y, jogador1.tabuleiro) == false then
+		if inserirNavio(opcao, x, y, jogador2.tabuleiro) == false then
 			print("Posição não disponível!")
 		else
 			naviosRestantes = naviosRestantes - 1
@@ -236,12 +228,12 @@ for k,v in pairs(jogador1.totalNavios) do
 	end
 end
 
+print(viewTabuleiro(jogador2.tabuleiro))
+
 if naviosRestantes == 0 then
 	print("Navios Inseridos!")
 end
 
-
-print(viewTabuleiro(jogador2.tabuleiro))
 
 until (opcao == 0 or naviosRestantes == 0)
 
