@@ -175,7 +175,7 @@ local x, y
 print("Digite o tamanho do navio 2, 3, 4, 5 ou 0 para sair")
 opcao = io.read("*n")
 
-if opcao == 0 then break end
+if opcao == 0 then return end
 
 print("Posição X no tabuleiro")
 x = io.read("*n")
@@ -220,7 +220,7 @@ repeat
 print("Digite o tamanho do navio 2, 3, 4, 5 ou 0 para sair")
 opcao = io.read("*n")
 
-if opcao == 0 then break end
+if opcao == 0 then return end
 
 print("Posição X no tabuleiro")
 x = io.read("*n")
@@ -254,9 +254,7 @@ if naviosRestantes == 0 then
 	print("Navios Inseridos!")
 end
 
-
 until (opcao == 0 or naviosRestantes == 0)
-
 
 local vezPlayer1 = false
 local vezPlayer2 = false
@@ -280,9 +278,8 @@ return end
 print("\n" .. viewTabuleiro(jogador2.mapa))
 
 while vezPlayer1 == true do
-	print("Jogue mais uma vez! \n")
 
-	print("\n" .. viewTabuleiro(jogador2.mapa))
+	print("Jogue mais uma vez! \n".. viewTabuleiro(jogador2.mapa))
 
 	print("\nPosição X no tabuleiro")	
 	x = io.read("*n")
@@ -290,23 +287,20 @@ while vezPlayer1 == true do
 	print("Posição Y no tabuleiro")
 	y = io.read("*n")
 
-	print("\n\n----Jogador 1 é sua vez -----\n\n" .. viewTabuleiro(jogador2.mapa))
 	vezPlayer1, jogador1.pontuacao = atirarNoTabuleiro(tabuleiro1, jogador2.mapa, x, y, jogador1.pontuacao)
+
 	if jogador1.pontuacao == tamanhoTotalDosBarcos1 then 
 		print("Vencedor " .. jogador1.nome)
 	return end
 end
 
-
-print("\n\n----Jogador 2 é sua vezviewTabuleiro -----\n\n" .. viewTabuleiro(jogador1.mapa))
-
+print("\n\n----Jogador 2 é sua vez -----\n\n" .. viewTabuleiro(jogador1.mapa))
 
 print("\nPosição X no tabuleiro")
 x = io.read("*n")
 
 print("Posição Y no tabuleiro")
 y = io.read("*n")
-
 
 vezPlayer2, jogador2.pontuacao = atirarNoTabuleiro(tabuleiro, jogador1.mapa, x, y, jogador2.pontuacao)
 
@@ -317,9 +311,7 @@ return end
 print("\n" .. viewTabuleiro(jogador1.mapa))
 
 while vezPlayer2 == true do
-	print("Jogue mais uma vez! \n")
-
-	print("\n" .. viewTabuleiro(jogador1.mapa))
+	print("Jogue mais uma vez! \n".. viewTabuleiro(jogador1.mapa))
 
 	print("\nPosição X no tabuleiro")
 	x = io.read("*n")
@@ -327,7 +319,6 @@ while vezPlayer2 == true do
 	print("Posição Y no tabuleiro")
 	y = io.read("*n")
 
-	print("\n" .. viewTabuleiro(jogador1.mapa))
 	vezPlayer2, jogador2.pontuacao = atirarNoTabuleiro(tabuleiro, jogador1.mapa, x, y, jogador2.pontuacao)
 	
 	if jogador2.pontuacao == tamanhoTotalDosBarcos2 then
@@ -335,6 +326,4 @@ while vezPlayer2 == true do
 	return end
 end
 
-
 until jogador1.pontuacao == tamanhoTotalDosBarcos1 or jogador2.pontuacao == tamanhoTotalDosBarcos2
-
