@@ -114,6 +114,17 @@ local posicaoOk = true
 	
 end
 
+function atirarNoTabuleiro(tabuleiro, mapa, linha, coluna, pontuacao)
+	for i=1, #tabuleiro[linha] do
+		if tabuleiro[linha][coluna] ~= 0 then
+			mapa[linha][coluna] = "X"
+			tabuleiro[linha][coluna] = 0
+			return true, pontuacao + 1
+		end
+	end
+	return false, pontuacao
+end
+
 ---------------- Navios ----------------
 
 local navios = {
@@ -128,6 +139,7 @@ local navios = {
 local jogador1 = {
 	nome = "Player 1",
 	tabuleiro = {},
+	mapa = mapaJogador1,
 	pontuacao = 0,
 	totalNavios = navios
 }
@@ -136,12 +148,14 @@ local jogador1 = {
 local jogador2 = {
 	nome = "Player 2",
 	tabuleiro = {},
+	mapa = mapaJogador2,
 	pontuacao = 0,
 	totalNavios = navios
 }
 
 jogador1.tabuleiro = tabuleiro
 jogador2.tabuleiro = tabuleiro1
+
 
 preencherTabuleiro(jogador1.tabuleiro)
 preencherTabuleiro(jogador2.tabuleiro)
@@ -152,6 +166,8 @@ preencherTabuleiro(jogador2.tabuleiro)
 
 print("--------- Player 1  inserir Navios -----\n\n")
 local naviosRestantes = 4
+local tamanhoTotalDosBarcos1 = 0
+
 repeat
 local opcao, orientacao
 local x, y
@@ -178,9 +194,11 @@ for k,v in pairs(jogador1.totalNavios) do
 		opcao. orientacao = orientacao
 
 		if inserirNavio(opcao, x, y, jogador1.tabuleiro) == false then
-			print("Posição não disponível!")
+			print("Posição não disponível!\n")
 		else
 			naviosRestantes = naviosRestantes - 1
+			tamanhoTotalDosBarcos1 = tamanhoTotalDosBarcos1 + v.tamanho
+			print(k .. " inserido\n")
 		end
 	end
 end
@@ -194,8 +212,8 @@ end
 until (opcao == 0 or naviosRestantes == 0)
 
 ----- Navios do Jogador 2 ----
-
-print("--------- Player 2  inserir Navios ----- \n\n")
+local tamanhoTotalDosBarcos2 = 0
+print("\n\n--------- Player 2  inserir Navios ----- \n\n")
 naviosRestantes = 4
 repeat
 
@@ -224,6 +242,8 @@ for k,v in pairs(jogador2.totalNavios) do
 			print("Posição não disponível!")
 		else
 			naviosRestantes = naviosRestantes - 1
+			tamanhoTotalDosBarcos2 = tamanhoTotalDosBarcos2 + v.tamanho
+			print(k .. " inserido\n")
 		end
 	end
 end
@@ -237,6 +257,84 @@ end
 
 until (opcao == 0 or naviosRestantes == 0)
 
-print(viewTabuleiro(mapaJogador2))
 
+local vezPlayer1 = false
+local vezPlayer2 = false
+
+repeat
+
+print("\n\n----Jogador 1 é sua vez -----\n\n" .. viewTabuleiro(jogador2.mapa))
+
+print("\nPosição X no tabuleiro")
+x = io.read("*n")
+
+print("Posição Y no tabuleiro")
+y = io.read("*n")
+
+vezPlayer1, jogador1.pontuacao = atirarNoTabuleiro(tabuleiro1, jogador2.mapa, x, y, jogador1.pontuacao)
+
+if jogador1.pontuacao == tamanhoTotalDosBarcos1 then 
+		print("Vencedor " .. jogador1.nome)
+return end
+
+print("\n" .. viewTabuleiro(jogador2.mapa))
+
+while vezPlayer1 == true do
+	print("Jogue mais uma vez! \n")
+
+	print("\n" .. viewTabuleiro(jogador2.mapa))
+
+	print("\nPosição X no tabuleiro")	
+	x = io.read("*n")
+
+	print("Posição Y no tabuleiro")
+	y = io.read("*n")
+
+	print("\n\n----Jogador 1 é sua vez -----\n\n" .. viewTabuleiro(jogador2.mapa))
+	vezPlayer1, jogador1.pontuacao = atirarNoTabuleiro(tabuleiro1, jogador2.mapa, x, y, jogador1.pontuacao)
+	if jogador1.pontuacao == tamanhoTotalDosBarcos1 then 
+		print("Vencedor " .. jogador1.nome)
+	return end
+end
+
+
+print("\n\n----Jogador 2 é sua vezviewTabuleiro -----\n\n" .. viewTabuleiro(jogador1.mapa))
+
+
+print("\nPosição X no tabuleiro")
+x = io.read("*n")
+
+print("Posição Y no tabuleiro")
+y = io.read("*n")
+
+
+vezPlayer2, jogador2.pontuacao = atirarNoTabuleiro(tabuleiro, jogador1.mapa, x, y, jogador2.pontuacao)
+
+if jogador2.pontuacao == tamanhoTotalDosBarcos2 then
+		print("Vencedor " .. jogador2.nome)
+return end
+
+print("\n" .. viewTabuleiro(jogador1.mapa))
+
+while vezPlayer2 == true do
+	print("Jogue mais uma vez! \n")
+
+	print("\n" .. viewTabuleiro(jogador1.mapa))
+
+	print("\nPosição X no tabuleiro")
+	x = io.read("*n")
+
+	print("Posição Y no tabuleiro")
+	y = io.read("*n")
+
+	print("\n" .. viewTabuleiro(jogador1.mapa))
+	vezPlayer2, jogador2.pontuacao = atirarNoTabuleiro(tabuleiro, jogador1.mapa, x, y, jogador2.pontuacao)
+	
+	if jogador2.pontuacao == tamanhoTotalDosBarcos2 then
+		print("Vencedor " .. jogador2.nome)
+	return end
+end
+
+
+until jogador1.pontuacao == tamanhoTotalDosBarcos1 or jogador2.pontuacao == tamanhoTotalDosBarcos2
 
