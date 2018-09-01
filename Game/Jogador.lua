@@ -1,5 +1,5 @@
  ----- Tabuleiros ------
-local tabuleiro = {
+local tabuleiroJogador1 = {
 	{},
 	{},
 	{},
@@ -12,7 +12,7 @@ local tabuleiro = {
 	{},
 }
 
-local tabuleiro1 = {
+local tabuleiroJogador2 = {
 	{},
 	{},
 	{},
@@ -138,7 +138,7 @@ local navios = {
 
 local jogador1 = {
 	nome = "Player 1",
-	tabuleiro = {},
+	tabuleiro = tabuleiroJogador1,
 	mapa = mapaJogador1,
 	pontuacao = 0,
 	totalNavios = navios
@@ -147,14 +147,11 @@ local jogador1 = {
 
 local jogador2 = {
 	nome = "Player 2",
-	tabuleiro = {},
+	tabuleiro = tabuleiroJogador2,
 	mapa = mapaJogador2,
 	pontuacao = 0,
 	totalNavios = navios
 }
-
-jogador1.tabuleiro = tabuleiro
-jogador2.tabuleiro = tabuleiro1
 
 
 preencherTabuleiro(jogador1.tabuleiro)
