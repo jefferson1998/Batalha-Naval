@@ -104,7 +104,7 @@ end
 	if posicaoOk == true then
 		if opcao.orientacao == "vertical" then
 			for i = opcao.tamanho, 1, -1 do
-				jogador.tabuleiro[linha + (i - navio.tamanho)][coluna] = opcao.tamanho
+				jogador.tabuleiro[linha + (i - opcao.tamanho)][coluna] = opcao.tamanho
 			end
 			naviosRestantes = naviosRestantes - 1
 			tamanhoTotalDosBarcos = tamanhoTotalDosBarcos + opcao.tamanho
@@ -121,7 +121,7 @@ end
 		end
 
 	else
-		return print("\nPosicao nao disponivel!\n")
+		return print("\nErro ao inserir navio! Verifique o tamanho e a posicao!\n")
 	end
 
 end
