@@ -115,13 +115,15 @@ end
 				jogador.tabuleiro[linha][coluna + i] = opcao.tamanho
 			end
 			naviosRestantes = naviosRestantes - 1
+
 			tamanhoTotalDosBarcos = tamanhoTotalDosBarcos + opcao.tamanho
 			print("\nNavio inserido!\n")
 			return tamanhoTotalDosBarcos, naviosRestantes
 		end
 
 	else
-		return print("\nErro ao inserir navio! Verifique o tamanho e a posicao!\n")
+		print("\nErro ao inserir navio! Verifique o tamanho e a posicao!\n")
+		return tamanhoTotalDosBarcos, naviosRestantes
 	end
 
 end
@@ -194,7 +196,7 @@ local x, y
 	orientacao = io.read()
 
  	tamanhoTotalDosBarcos1, naviosRestantes = inserirNavio(jogador1, x, y, opcao, orientacao, tamanhoTotalDosBarcos1, naviosRestantes)
- 	
+ 	print(naviosRestantes)
 	print(viewTabuleiro(jogador1.tabuleiro))
 
 until (opcao == 0 or naviosRestantes == 0)
